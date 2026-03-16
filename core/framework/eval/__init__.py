@@ -19,7 +19,7 @@ End-to-end agent graph evaluation with scoring, reporting, and CI integration.
 """
 
 from framework.eval.case import EvalCase, EvalSuite
-from framework.eval.report import EvalReport, EvalCaseResult
+from framework.eval.report import EvalCaseResult, EvalReport
 from framework.eval.runner import EvalRunner
 from framework.eval.scorer import EvalScorer, ScorerConfig
 

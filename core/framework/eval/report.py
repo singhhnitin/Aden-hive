@@ -133,9 +133,9 @@ class EvalReport(BaseModel):
         """Save report as Markdown."""
         lines = [
             f"# Eval Report: {self.suite_name}",
-            f"",
-            f"| Field | Value |",
-            f"|-------|-------|",
+            "",
+            "| Field | Value |",
+            "|-------|-------|",
             f"| Agent | `{self.agent_path}` |",
             f"| Model | `{self.model}` |",
             f"| Pass rate | {self.pass_rate:.1%} ({self.passed}/{self.total}) |",
@@ -143,11 +143,11 @@ class EvalReport(BaseModel):
             f"| Avg latency | {self.avg_latency_ms:.0f}ms |",
             f"| Total cost | ${self.total_cost_usd:.6f} |",
             f"| Duration | {self.duration_ms}ms |",
-            f"",
-            f"## Case Results",
-            f"",
-            f"| Case | Passed | Score | Latency | Cost | Failed dimensions |",
-            f"|------|--------|-------|---------|------|-------------------|",
+            "",
+            "## Case Results",
+            "",
+            "| Case | Passed | Score | Latency | Cost | Failed dimensions |",
+            "|------|--------|-------|---------|------|-------------------|",
         ]
         for r in self.case_results:
             failed_dims = ", ".join(d.name for d in r.dimensions if not d.passed) or "-"

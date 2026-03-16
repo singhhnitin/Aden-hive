@@ -33,7 +33,7 @@ class EvalExpectation(BaseModel):
     """What we expect from the agent for a given input."""
 
     # Output content checks
-    contains: list[str] = Field(default_factory=list, description="Strings that must appear in output")
+    contains: list[str] = Field(default_factory=list, description="Strings that must appear in output")  # noqa: E501
     not_contains: list[str] = Field(default_factory=list, description="Strings that must NOT appear")
     exact_match: str | None = Field(default=None, description="Exact expected output string")
 
@@ -86,7 +86,7 @@ class EvalSuite(BaseModel):
     model_config = {"extra": "allow"}
 
     @classmethod
-    def from_yaml(cls, path: str | Path) -> "EvalSuite":
+    def from_yaml(cls, path: str | Path) -> EvalSuite:
         """Load an EvalSuite from a YAML file."""
         path = Path(path)
         if not path.exists():
@@ -95,7 +95,7 @@ class EvalSuite(BaseModel):
             data = yaml.safe_load(f)
         return cls.model_validate(data)
 
-    def filter_by_tags(self, tags: list[str]) -> "EvalSuite":
+    def filter_by_tags(self, tags: list[str]) -> EvalSuite:
         """Return a new suite with only cases matching the given tags."""
         filtered = [c for c in self.cases if any(t in c.tags for t in tags)]
         return self.model_copy(update={"cases": filtered})

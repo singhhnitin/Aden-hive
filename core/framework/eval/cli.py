@@ -6,7 +6,6 @@ Registers: hive eval run, hive eval report
 from __future__ import annotations
 
 import asyncio
-import sys
 from pathlib import Path
 
 
@@ -76,6 +75,7 @@ def _cmd_eval_run(args) -> int:
 
 def _cmd_eval_report(args) -> int:
     import json
+
     from framework.eval.report import EvalReport
 
     path = Path(args.report_path)

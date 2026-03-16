@@ -54,6 +54,7 @@ lint.select = [
 ]
 
 lint.per-file-ignores."demos/*" = ["E501"]
+lint.per-file-ignores."framework/eval/*" = ["E501"]
 lint.isort.combine-as-imports = true
 lint.isort.known-first-party = ["framework"]
 lint.isort.section-order = [

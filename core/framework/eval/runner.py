@@ -10,7 +10,7 @@ from datetime import datetime
 from pathlib import Path
 
 from framework.eval.case import EvalCase, EvalSuite
-from framework.eval.report import EvalReport, EvalCaseResult
+from framework.eval.report import EvalCaseResult, EvalReport
 from framework.eval.scorer import EvalScorer, ScorerConfig
 
 
@@ -63,7 +63,7 @@ class EvalRunner:
         report.passed = sum(1 for r in results if r.passed)
         report.failed = sum(1 for r in results if not r.passed)
         report.overall_score = (
-            sum(r.score * c.weight for r, c in zip(results, suite.cases))
+            sum(r.score * c.weight for r, c in zip(results, suite.cases, strict=False))
             / max(sum(c.weight for c in suite.cases), 1e-9)
         )
         report.avg_latency_ms = (
